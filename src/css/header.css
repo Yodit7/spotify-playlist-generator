@@ -1,0 +1,45 @@
+.header {
+    /* height: 10vh; */
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    margin: 50px 0px;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 30px;
+    color: rgb(67, 141, 33);
+    margin-top: 5px;
+}
+
+.header h2 {
+    color: white;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-item {
+    font-size: 18px;
+    border: 1px solid rgb(33, 83, 10);
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: rgb(67, 141, 33);
+    font-weight: 600;
+    color: white;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    color: rgb(29, 29, 29);
+}
