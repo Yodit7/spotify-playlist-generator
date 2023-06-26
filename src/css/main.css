@@ -1,0 +1,13 @@
+.main-container {
+    background-color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

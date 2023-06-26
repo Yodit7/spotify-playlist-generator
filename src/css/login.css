@@ -1,0 +1,44 @@
+.login-page {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page a {
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgb(67, 141, 33);
+    padding: 15px 20px;
+    border-radius: 35px;
+    background-color: rgb(67, 141, 33);
+    font-weight: 600;
+}
+
+.login-page a:hover {
+    color: rgb(29,29,29);
+}
+
+.logout-page {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 125px;
+    margin-bottom: 50px;
+}
+
+.btn-logout {
+    font-size: 18px;
+    border: 1px solid rgb(33, 83, 10);
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: rgb(67, 141, 33);
+    font-weight: 600;
+    color: white;
+}
+
+.btn-logout:hover {
+    cursor: pointer;
+    color: black;
+}
