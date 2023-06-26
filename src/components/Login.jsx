@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Main } from './Main';
 import SpotifyWebApi from 'spotify-web-api-js';
 // import { response } from 'express';
+import axios from 'axios';
+import { Profile } from './Profile';
 
 
 export function Login() {
@@ -38,12 +40,16 @@ export function Login() {
     const [spotifyToken, setSpotifyToken] = useState("")
     const [loggedIn, setLoggedIn] = useState(false)
     const [nowPlaying, setNowPlaying] = useState({})
-    const [likedSongs, setLikedSongs] = useState({})
+    const [likedSongs, setLikedSongs] = useState([])
+    const [user, setUser] = useState([])
+    const [userProfile, setUserProfile] = useState([])
 
     const spotifyApi = new SpotifyWebApi();
 
+    /**
+     * Get Access Token
+     */
     const getTokenFromUrl = () => {
-        console.log("here")
         return window.location.hash.substring(1).split("&").reduce((initial, item) => {
             let parts = item.split("=");
             initial[parts[0]] = decodeURIComponent(parts[1])
@@ -52,25 +58,30 @@ export function Login() {
     }
 
     useEffect(() => {
-        console.log("This is what we derived from the URL:", getTokenFromUrl())
+        // console.log("This is what we derived from the URL:", getTokenFromUrl())
         const spotifyToken = getTokenFromUrl().access_token;
         window.location.hash = ""
-        console.log("This is our spotify token: ", spotifyToken)
+        // console.log("This is our spotify token: ", spotifyToken)
 
         if(spotifyToken){
             setSpotifyToken(spotifyToken)
             spotifyApi.setAccessToken(spotifyToken)
             spotifyApi.getMe().then((user) => {
-                console.log(user)
+                // console.log(user)
+                setUser(user)
             })
             setLoggedIn(true)
         }
-    })
 
-    // get now playing
+        getTop()
+    })
+    console.log(userProfile)
+    /**
+     * Get Now Playing 
+     */
     const getNowPlaying = () => {
         spotifyApi.getMyCurrentPlaybackState().then(response => {
-            console.log(response)
+            // console.log(response)
             setNowPlaying({
                 name: response.item.name,
                 albumArt: response.item.album.images[0].url
@@ -78,16 +89,55 @@ export function Login() {
         })
     }
 
-    // get liked songs
+    /**
+     * Get User's Liked Songs
+     */
     const getMyLikedSongs = () => {
-        spotifyApi.getLikedSongs().then(response => {
+        spotifyApi.getMySavedTracks().then(response => {
             console.log(response)
-            setLikedSongs({
-                name: response.item.name,
-                albumArt: response.item.album.images[0].url
-            })
+            setLikedSongs(response.items)
         })
     }
+
+
+    /**
+     * Get User Top Tracks
+     */
+    const getTop = () => {
+        spotifyApi.getMyTopTracks().then(response => {
+            console.log(response)
+        })
+    }
+
+
+    /**
+     * Get User Information like Profile Picture
+     */
+    const getUserInformation = async () => {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+                Authorization: `Bearer ${spotifyToken}`
+            }
+        });
+        // console.log("here")
+        // console.log("retrieved information:", user);
+        setUser(response.data)
+    }
+
+    /**
+     * player
+     */
+    const playSong = async () => {
+        const response = await axios.get("https://api.spotify.com/v1/me/player/play", {
+            headers: {
+                Authorization: `Bearer ${spotifyToken}`
+            }
+        })
+        console.log(response);
+    }
+      
+    console.log("here: ", user)
+    console.log("login spotify token: ", spotifyToken)
 
     return (
         <>
@@ -99,20 +149,31 @@ export function Login() {
                 </div>
                 : 
                 <div>
-                    <Main spotifyToken={spotifyToken}/>
-                    {/* <div className='logout-page'>
-                        <button onClick={logout} className='btn-logout'>Log out</button>
-                    </div> */}
-                    <div>Now Playing: {nowPlaying.name}</div>
                     <div>
-                        <img src={nowPlaying.albumArt}/>
+                        <Profile token={spotifyToken}/>
+                    </div>
+                    <div>
+                        {/* <Main spotifyToken={spotifyToken} />
+                        {console.log("here:", spotifyToken)} */}
+                    </div>
+
+                    <div>
+                        {/* <div>Now Playing: {nowPlaying.name}</div>
+                        <button onClick={() => getNowPlaying()}>Check Now Playing</button>
+                        <img src={nowPlaying.albumArt}/> */}
                     </div>
                 </div>
             }
             {loggedIn && (
                 <>
-                    <button onClick={() => getNowPlaying()}>Check Now Playing</button>
+                {/* <button onClick={() => getTop()}>Top Tracks</button>
                     <button onClick={() => getMyLikedSongs()}>My Liked Songs</button>
+                    {likedSongs.map((song) => (
+                        <div key={song.track.id}>
+                            <img src={song.track.album.images[0].url} alt={song.track.album.name} />
+                            <button onClick={() => playSong()}>Play</button>
+                        </div>
+                    ))} */}
                 </>
             )}
         </>
