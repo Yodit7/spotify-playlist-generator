@@ -1,6 +1,7 @@
-import "../css/main.css";
 import { Profile } from './Profile';
 import { Generator } from "./Generator";
+import { LikedSongs } from './LikedSongs';
+import { Playlist } from './Playlist';
 
 
 export function Main({spotifyToken}) {
@@ -10,7 +11,9 @@ export function Main({spotifyToken}) {
     return (
       <>
         <Profile spotifyToken={spotifyToken}/>
-        {/* <Generator spotifyToken={spotifyToken}/>        */}
+        <Generator spotifyToken={spotifyToken} />    
+        <LikedSongs />
+        <Playlist />
       </>
     );
 }

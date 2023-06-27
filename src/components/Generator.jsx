@@ -1,6 +1,9 @@
-import "../css/main.css";
+// import "../css/main.css";
+import "../css/generator.css";
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { FaRegClock, FaHashtag } from "react-icons/fa";
+import { RxMagicWand } from "react-icons/rx";
 
 export function Generator({spotifyToken}){
     const [searchKey, setSearchKey] = useState("");
@@ -11,36 +14,6 @@ export function Generator({spotifyToken}){
     const [songs, setSongs] = useState([])
     const [player, setPlayer] = useState(undefined)
     const [likedSongs, setLikedSongs] = useState({})
-  
-      // get artists by name
-      const searchArtists = async (e) => {
-          e.preventDefault();
-          // response
-          const { data } = await axios.get("https://api.spotify.com/v1/search", {
-          headers: {
-              Authorization: `Bearer ${spotifyToken}`,
-          },
-          params: {
-              q: searchKey,
-              type: "artist",
-          },
-          });
-  
-          setArtists(data.artists.items);
-      };
-  
-      const renderArtists = () => {
-          return artists.map((artist) => (
-          <div key={artist.id}>
-              {artist.name}
-              {artist.images.length ? (
-              <img src={artist.images[0].url} alt="" />
-              ) : (
-              <div>No Image</div>
-              )}
-          </div>
-          ));
-      };
   
       // get all genres
       const getGenres = async (e) => {
@@ -120,20 +93,21 @@ export function Generator({spotifyToken}){
         <>
          <div className="main-container">
           <div className="container">
-            <label htmlFor="genre-select">Select a Genre:</label>
-            <select name="genres" onClick={getGenres} onChange={playlistGenre}>
-              <option>Select...</option>
-              {genres.map((genre) => (
-                <option key={genre} value={genre}>{genre}</option>
-              ))}
-            </select>
-          </div>
-          <div className="container">
-            <label>How many songs should be in your playlist?</label>
-            <input type="text" placeholder="number of songs" value={num} onChange={getNumOfSongs}/>
-          </div>
-          <div>
-            <button onClick={searchTracksByGenre}>Generate Playlist</button>
+            <div className="container-item">
+              <label htmlFor="genre-select">Select a Genre:</label>
+              <select name="genres" onClick={getGenres} onChange={playlistGenre}>
+                <option>Select...</option>
+                {genres.map((genre) => (
+                  <option key={genre} value={genre}>{genre}</option>
+                ))}
+              </select>
+            </div>
+            <div className="container-item">
+              <label>How many songs should be in your playlist?</label>
+              <input type="text" placeholder="number" value={num} onChange={getNumOfSongs}/>
+            </div>
+            <div className="container-item">
+              <button onClick={searchTracksByGenre}>Generate Playlist <RxMagicWand /></button>
                 {songs.map((song) => (
                   <div key={song.id}>
                     <p>{song.name}</p>
@@ -148,11 +122,87 @@ export function Generator({spotifyToken}){
                     </audio>
                   </div>
                 ))}
+            </div>
           </div>
-          <div>
-            <button onClick={() => getUserLikedSongs()}>liked songs</button>
+          <div className="container-display">
+            <div className="container-display-header">
+                <FaHashtag />
+                <p>Title</p>
+                <p>Album</p>
+                <FaRegClock />
+            </div>
+            <hr />
+            <ul className="container-display-list">
+              <li className="container-display-item">
+                <p>1</p>
+                <div className="track-details">
+                  <div className="track-cover"></div>
+                  <div className="track-title-details">
+                    <p className="track-name">Track Name</p>
+                    <p className="track-artist">Track Artist</p>
+                  </div>
+                </div>
+                <p>Album Name</p>
+                <p>3:12</p>
+              </li>
+              <li className="container-display-item">
+                <p>1</p>
+                <div className="track-details">
+                  <div className="track-cover"></div>
+                  <div className="track-title-details">
+                    <p className="track-name">Track Name</p>
+                    <p className="track-artist">Track Artist</p>
+                  </div>
+                </div>
+                <p>Album Name</p>
+                <p>3:12</p>
+              </li>
+              <li className="container-display-item">
+                <p>1</p>
+                <div className="track-details">
+                  <div className="track-cover"></div>
+                  <div className="track-title-details">
+                    <p className="track-name">Track Name</p>
+                    <p className="track-artist">Track Artist</p>
+                  </div>
+                </div>
+                <p>Album Name</p>
+                <p>3:12</p>
+              </li>
+              <li className="container-display-item">
+                <p>1</p>
+                <div className="track-details">
+                  <div className="track-cover"></div>
+                  <div className="track-title-details">
+                    <p className="track-name">Track Name</p>
+                    <p className="track-artist">Track Artist</p>
+                  </div>
+                </div>
+                <p>Album Name</p>
+                <p>3:12</p>
+              </li>
+              <li className="container-display-item">
+                <p>1</p>
+                <div className="track-details">
+                  <div className="track-cover"></div>
+                  <div className="track-title-details">
+                    <p className="track-name">Track Name</p>
+                    <p className="track-artist">Track Artist</p>
+                  </div>
+                </div>
+                <p>Album Name</p>
+                <p>3:12</p>
+              </li>
+            </ul>
+          </div>
+          <div className="playlist-add">
+            <button className="btn-add">Add Playlist to My Playlists</button>
           </div>
         </div>
         </>
     )
 }
+
+{/* <div>
+<button onClick={() => getUserLikedSongs()}>liked songs</button>
+</div> */}
