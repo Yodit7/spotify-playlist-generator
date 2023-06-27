@@ -107,7 +107,7 @@ export function Generator({spotifyToken}){
               <input type="text" placeholder="number" value={num} onChange={getNumOfSongs}/>
             </div>
             <div className="container-item">
-              <button onClick={searchTracksByGenre}>Generate Playlist <RxMagicWand /></button>
+              <button onClick={searchTracksByGenre}>Generate <RxMagicWand /></button>
                 {songs.map((song) => (
                   <div key={song.id}>
                     <p>{song.name}</p>

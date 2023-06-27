@@ -142,6 +142,8 @@ span {
     margin-right: 35px;
 }
 
+
+
 .top-list {
     list-style: none;
     display: grid;
@@ -204,7 +206,11 @@ span {
     border-radius: 25px;
     background-color: green;
     color: white;
-    font-weight: 600;
     cursor: pointer;
+}
+
+.top-header button:hover,
+.generate-button .btn:hover {
+    font-weight: 600;
 }
 
