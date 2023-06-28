@@ -1,6 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   width: 1200px;
   margin: auto;
-  font-family: 'Poppins', sans-serif;
-  background-color: rgb(29, 29, 29);
+  font-family: var(--font-family);
+  background-color: var(--black-grey-color);
+  color: var(--text-color);
+}
+
+:root {
+  --font-family: 'Monserrat', sans-serif;
+
+  --text-color: rgb(255,255,255);
+  --green-color: rgb(29, 185, 84);
+  --dark-grey-color: rgb(33,33,33);
+  --black-grey-color: rgb(18,18,18);
+  --grey-color: rgb(83,83,83);
+  --bright-grey-color: rgb(179,179,179);
+
+
+  --smaller-font-size: 14px;
+  --small-font-size: 16px;
+  --normal-font-size: 18px;
+  --medium-font-size: 20px;
+  --large-font-size: 24px;
+
+  --thin-font-weight: 100;
+  --normal-font-weight: 400;
+  --medium-font-weight: 600;
+  --big-font-weight: 900;
 }

@@ -3,17 +3,18 @@ import "../css/generator.css";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { FaRegClock, FaHashtag } from "react-icons/fa";
-import { RxMagicWand } from "react-icons/rx";
+// import { RxMagicWand } from "react-icons/rx";
+import { RiAiGenerate } from "react-icons/ri";
 
 export function Generator({spotifyToken}){
-    const [searchKey, setSearchKey] = useState("");
-    const [artists, setArtists] = useState([]);
+    // const [searchKey, setSearchKey] = useState("");
+    // const [artists, setArtists] = useState([]);
     const [genres, setGenres] = useState([])
     const [num, setNum] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("")
     const [songs, setSongs] = useState([])
-    const [player, setPlayer] = useState(undefined)
-    const [likedSongs, setLikedSongs] = useState({})
+    // const [player, setPlayer] = useState(undefined)
+    // const [likedSongs, setLikedSongs] = useState({})
   
       // get all genres
       const getGenres = async (e) => {
@@ -107,7 +108,7 @@ export function Generator({spotifyToken}){
               <input type="text" placeholder="number" value={num} onChange={getNumOfSongs}/>
             </div>
             <div className="container-item">
-              <button onClick={searchTracksByGenre}>Generate <RxMagicWand /></button>
+              <button className="btn-main btn-main-icon" onClick={searchTracksByGenre}>Generate <RiAiGenerate /></button>
                 {songs.map((song) => (
                   <div key={song.id}>
                     <p>{song.name}</p>
@@ -196,7 +197,7 @@ export function Generator({spotifyToken}){
             </ul>
           </div>
           <div className="playlist-add">
-            <button className="btn-add">Add Playlist to My Playlists</button>
+            <button className="btn-main">Save Playlist</button>
           </div>
         </div>
         </>

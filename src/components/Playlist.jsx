@@ -1,5 +1,6 @@
 import "../css/playlist.css";
 import { useState } from "react";
+import { PiPlaylistFill } from "react-icons/pi";
 
 export function Playlist() {
 
@@ -40,7 +41,10 @@ export function Playlist() {
   return (
     <>
       <div className="playlists-container">
-        <h3>Playlists</h3>
+        <div className="section-header-title">
+            <PiPlaylistFill className="icon-style"/>
+            <h2>Playlists</h2>
+        </div>
         <ul className="playlists-section">
             {playlists.map((playlist) => (
                 <li className="playlist-item" key={playlist.id}>
@@ -49,7 +53,7 @@ export function Playlist() {
                 </li>
             ))}
         </ul>
-        <button className="btn-more">Load more</button>
+        <button className="btn-main">Load more</button>
       </div>
     </>
   );

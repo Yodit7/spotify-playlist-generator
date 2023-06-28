@@ -2,9 +2,6 @@ import '../css/login.css'
 import { useState, useEffect } from 'react';
 import { Main } from './Main';
 import SpotifyWebApi from 'spotify-web-api-js';
-// import { response } from 'express';
-import axios from 'axios';
-import { Profile } from './Profile';
 
 
 export function Login() {
@@ -43,7 +40,7 @@ export function Login() {
         <>
             {!loggedIn ? 
                 <div className="login-page">
-                    <a href="http://localhost:8888">Login to Spotify</a>
+                    <a href="http://localhost:8888" className='btn-main'>Login to Spotify</a>
                 </div>
                 : 
                 <div>

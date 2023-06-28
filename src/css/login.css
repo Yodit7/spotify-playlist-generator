@@ -1,3 +1,5 @@
+@import 'styles.css';
+
 .login-page {
     height: 60vh;
     display: flex;
@@ -6,18 +8,13 @@
 }
 
 .login-page a {
-    font-size: 28px;
+    font-size: var(--large-font-size);
     text-decoration: none;
-    color: white;
-    border: 1px solid rgb(67, 141, 33);
+    color: var(--black-grey-color);
     padding: 15px 20px;
     border-radius: 35px;
-    background-color: rgb(67, 141, 33);
-    font-weight: 600;
-}
-
-.login-page a:hover {
-    color: rgb(29,29,29);
+    background-color: var(--green-color);
+    font-weight: var(--medium-font-weight);
 }
 
 .logout-page {
@@ -26,19 +23,4 @@
     right: 0;
     margin-right: 125px;
     margin-bottom: 50px;
-}
-
-.btn-logout {
-    font-size: 18px;
-    border: 1px solid rgb(33, 83, 10);
-    padding: 10px 15px;
-    border-radius: 25px;
-    background-color: rgb(67, 141, 33);
-    font-weight: 600;
-    color: white;
-}
-
-.btn-logout:hover {
-    cursor: pointer;
-    color: black;
 }

@@ -1,4 +1,5 @@
 import { FaRegClock, FaHashtag } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
 import { useState } from "react";
 import '../css/likedSongs.css'
 
@@ -81,7 +82,10 @@ export function LikedSongs() {
     return (
         <>
         <div className="likedSongs-container">
-            <h3>Liked Songs</h3>
+            <div className="section-header-title">
+                <FcLike className="icon-style"/>  
+                <h2>Liked Songs</h2>
+            </div>
             <div className="likedSongs-section">
                 <div className="likedSongs-container-header">
                     <ul className="header-list">

@@ -70,52 +70,54 @@ export function Profile({ spotifyToken }) {
   const [topArtists, setTopArtists] = useState([
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
     {
         cover: "Cover",
-        artist: "Teddy Afro"
+        name: "Teddy Afro"
     },
   ]);
 
   const spotifyApi = new SpotifyWebApi();
 
   useEffect(() => {
-    getTopTracksWithRetry();
   }, []);
 
+  /**
+   * Get User's Top Tracks
+   */
   const getTopTracksWithRetry = async () => {
     try {
       await getTopTracks();
@@ -143,36 +145,29 @@ export function Profile({ spotifyToken }) {
     <>
       <div className="profile-header">
         <div className="profile-picture"></div>
-        <p className="profile-header-title">Yodit Ahmed</p>
+        <h3>Yodit Ahmed</h3>
       </div>
       <div className="profile-header-infos">
         <div className="profile-stats">
-            <p>
-            Follower: <span>21</span>
-            </p>
-            <p>
-            Following: <span>51</span>
-            </p>
-            <p className="center-line">
-            Liked Songs: <span>1500</span>
-            </p>
+            <p>Follower: <span>21</span></p>
+            <p>Following: <span>51</span></p>
+            <p className="center-line">Liked Songs: <span>1500</span></p>
         </div>
         <div className="profile-links">
             <a href="">Liked Songs</a>
             <a href="">Playlists</a>
-            {/* <a href="">Your Shows</a> */}
         </div>
       </div>
       <div className="profile-overview">
         <div className="top-tracks">
           <div className="top-header">
-            <p className="top-title">Top Tracks</p>
-            <button>See more</button>
+            <h4 className="top-title">Top Tracks</h4>
+            <button className="btn-more">See more</button>
           </div>
           <ul className="top-list" key="1">
             {topTracks.map((topTrack) => (
-              <li key={topTrack.id}>
-                <div className="list-item-left">
+              <li className="list-item" key={topTrack.id}>
+                {/* <div className="list-item-left"> */}
                   {/* <img
                     src={topTrack.album.images[0].url}
                     style={{ height: "50px", width: "50px" }}
@@ -195,28 +190,32 @@ export function Profile({ spotifyToken }) {
                       {((topTrack.duration_ms / 1000) % 60).toFixed(0)} min */}
                     </p>
                   </div>
-                </div>
+                {/* </div> */}
               </li>
             ))}
           </ul>
         </div>
         <div className="top-artist">
           <div className="top-header">
-            <p className="top-title">Top Artists</p>
-            <button>See more</button>
+            <h4 className="top-title">Top Artists</h4>
+            <button className="btn-more">See more</button>
           </div>
           <ul className="top-list" key="2">
             {topArtists.map((topArtist) => (
               <li className="list-item" key={topArtist.id}>
                 <div className="top-artist-img"></div>
-                <p className="medium">{topArtist.artist}</p>
+                {/* <img
+                    src={topArtist.images[0].url}
+                    style={{ height: "60px", width: "60px" }}
+                />                 */}
+                <p className="medium">{topArtist.name}</p>
               </li>
             ))}
           </ul>
         </div>
       </div>
       <div className="generate-button">
-        <button className="btn">
+        <button className="btn-main btn-main-icon">
           Generate Playlist
           <FaChevronDown />
         </button>
@@ -224,30 +223,3 @@ export function Profile({ spotifyToken }) {
     </>
   );
 }
-
-// const getProfilePicture = () => {
-//     const response =
-// }
-
-/**
- * Get Now Playing
- */
-//   const getNowPlaying = () => {
-//     spotifyApi.getMyCurrentPlaybackState().then(response => {
-//         // console.log(response)
-//         setNowPlaying({
-//             name: response.item.name,
-//             albumArt: response.item.album.images[0].url
-//         })
-//     })
-// }
-
-/**
- * Get User's Liked Songs
- */
-// const getMyLikedSongs = () => {
-//     spotifyApi.getMySavedTracks().then(response => {
-//         console.log(response)
-//         setLikedSongs(response.items)
-//     })
-// }

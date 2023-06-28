@@ -1,37 +1,12 @@
-* {
-    padding: 0;
-    margin: 0;
-}
+@import 'styles.css';
 
-body {
-    font-family: 'Monserrat', sans-serif;
-    color: white;
-}
-
-span {
-    color: green;
-    font-weight: 600;
-}
-
-.normal {
-    font-weight: 300;
-}
-
-.medium {
-    font-weight: 600;
-}
-
-.small {
-    font-weight: 100;
-    font-size: 14px;
-}
 .profile-section {
     display: grid;
     grid-template-columns: 250px 475px 475px;
     column-gap: 25px;
 }
 
-.profile-container,
+/** Profile Details **/
 .profile-header {
     display: flex;
     flex-direction: column;
@@ -47,18 +22,13 @@ span {
     border-radius: 100px;
 }
 
-.profile-header-title {
-    font-weight: 600;
-    font-size: 20px;
-}
-
 .profile-header-infos {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 15px;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 80px;
 }
 
@@ -76,19 +46,20 @@ span {
 
 .profile-links a {
     text-decoration: none;
-    color: white;
-    border: 1px solid white;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
     padding: 8px 12px;
     border-radius: 5px;
-    background-color: black;
+    background-color: var(--dark-grey-color);
 }
 
 .profile-links a:hover {
-    color: green;
+    color: var(--green-color);
     font-weight: 600;
-    border-color: green;
+    border-color: var(--green-color);
 }
 
+/** Profile Top's **/
 .profile-overview {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -107,8 +78,7 @@ span {
 .top-artist {
     display: flex;
     flex-direction: column;
-    /* background-color: green; */
-    border: 1px solid white;
+    border: 1px solid var(--text-color);
     border-radius: 20px;
 }
 
@@ -120,29 +90,9 @@ span {
     padding-top: 15px;
 }
 
-.top-header .top-title {
-    font-weight: 600;
-    color: white;
-    font-size: 18px;
-}
-
 .top-title {
     margin-left: 35px;
 }
-
-.top-header button {
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 30px;
-    border-style: none;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    margin-right: 35px;
-}
-
-
 
 .top-list {
     list-style: none;
@@ -151,7 +101,8 @@ span {
 }
 
 
-.list-item-left {
+.top-tracks .list-item,
+.top-artist .list-item  {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -163,7 +114,6 @@ span {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    font-size: 14px;
     padding-left: 15px;
 }
 
@@ -174,43 +124,23 @@ span {
 }
 
 .top-artist-img {
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     border-radius: 30px;
     background-color: black;
 }
 
-.list-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.top-artist .list-item,
+.top-tracks .list-item {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 70px;
 }
 
-.top-artist .list-item {
-    margin: 17px 35px;
-}
 
+/** Generate Button **/
 .generate-button {
     display: flex;
     justify-content: center;
     margin: 30px 0px;
 }
-
-.generate-button .btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 30px;
-    font-size: 16px;
-    border: 1px solid white;
-    border-radius: 25px;
-    background-color: green;
-    color: white;
-    cursor: pointer;
-}
-
-.top-header button:hover,
-.generate-button .btn:hover {
-    font-weight: 600;
-}
-
