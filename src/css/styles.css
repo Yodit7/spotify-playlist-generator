@@ -91,6 +91,18 @@ hr {
   font-family: var(--font-family);
 }
 
+.btn-icon {
+  background-color: transparent;
+  border-style: none;
+  padding: 2px;
+  font-size: var(--large-font-size);
+}
+
+.btn-icon:hover {
+  cursor: pointer;
+  color: var(--green-color);
+}
+
 /** ICONS **/
 .icon-style {
   font-size: 28px;

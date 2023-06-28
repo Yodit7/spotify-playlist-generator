@@ -4,8 +4,8 @@
 }
 
 body {
-  width: 1200px;
-  margin: auto;
+  /* width: 1200px;
+  margin: auto; */
   font-family: var(--font-family);
   background-color: var(--black-grey-color);
   color: var(--text-color);
@@ -32,4 +32,15 @@ body {
   --normal-font-weight: 400;
   --medium-font-weight: 600;
   --big-font-weight: 900;
+}
+
+
+.main-page {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.right-side {
+  margin: auto;
+  position: fixed;
 }

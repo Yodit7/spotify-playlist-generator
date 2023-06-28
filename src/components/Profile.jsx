@@ -113,6 +113,7 @@ export function Profile({ spotifyToken }) {
   const spotifyApi = new SpotifyWebApi();
 
   useEffect(() => {
+
   }, []);
 
   /**
@@ -143,7 +144,7 @@ export function Profile({ spotifyToken }) {
 
   return (
     <>
-      <div className="profile-header">
+      {/* <div className="profile-header">
         <div className="profile-picture"></div>
         <h3>Yodit Ahmed</h3>
       </div>
@@ -157,7 +158,7 @@ export function Profile({ spotifyToken }) {
             <a href="">Liked Songs</a>
             <a href="">Playlists</a>
         </div>
-      </div>
+      </div> */}
       <div className="profile-overview">
         <div className="top-tracks">
           <div className="top-header">

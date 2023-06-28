@@ -1,6 +1,8 @@
 @import 'styles.css';
 
 .main-container {
+    width: 1200px;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

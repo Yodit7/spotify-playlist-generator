@@ -1,0 +1,88 @@
+.player-container {
+    position: fixed;
+    bottom: 0;
+    background-color: var(--black-grey-color);
+    width: 300px;
+    height: 100vh;
+    border: 1px solid var(--dark-grey-color);
+    display: grid;
+    grid-template-rows: 20vh 30vh 50vh;
+}
+
+.player-display {
+    width: 300px;
+    height: 300px;
+    background-color: var(--dark-grey-color);
+    position: fixed;
+    bottom: 0;
+}
+
+.player-header {
+    grid-row-start: 2;
+}
+
+/** Profile Details **/
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 25px;
+}
+
+.profile-header .profile-picture {
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    border-radius: 100px;
+}
+
+.profile-links {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.profile-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--dark-grey-color);
+}
+
+.profile-links a:hover {
+    color: var(--green-color);
+    font-weight: 600;
+    border-color: var(--green-color);
+}   
+
+/** Player Display **/
+.player-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.player-cover {
+    height: 175px;
+    width: 175px;
+    background-color: black;
+    margin: 10px 0px;
+}
+
+.now-playing-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.player-audio-control {
+    margin-top: 18px;
+    display: flex;
+    gap: 15px;
+}

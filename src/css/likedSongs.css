@@ -1,6 +1,9 @@
 @import 'styles.css';
 
 .likedSongs-container {
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
     flex-direction: column;
     height: auto;
