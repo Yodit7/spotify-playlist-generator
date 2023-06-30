@@ -1,5 +1,5 @@
 import "../css/header.css";
-import { BsSpotify } from "react-icons/bs";
+import { BsSpotify, BsList } from "react-icons/bs";
 
 export function Header() {
   return (
@@ -12,6 +12,7 @@ export function Header() {
           <h2>Spotify Playlist Generator</h2>
         </div>
         <ul className="nav">
+          <li className="nav-item menu-icon"><BsList /></li>
           <li className="nav-item">
             <a href="" className="nav-link btn-main">
               Generate

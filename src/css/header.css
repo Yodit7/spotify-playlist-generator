@@ -33,6 +33,13 @@
     color: var(--text-color);
 }
 
+.menu-icon {
+    font-size: var(--large-font-size);
+    color: var(--green-color);
+    cursor: pointer;
+    display: none;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1200px) {
     .headline {
         margin-left: 50px;
@@ -40,5 +47,27 @@
     
     .nav {
         margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .headline {
+        margin-left: 50px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-item {
+        display: none;
+    }
+
+    .nav-item:nth-child(1) {
+        display: block;
+        margin-top: 6px;
+        margin-right: 75px;
+        margin-left: 25px;
+        align-self: center;
     }
 }

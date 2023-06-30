@@ -9,7 +9,10 @@ body {
   font-family: var(--font-family);
   background-color: var(--black-grey-color);
   color: var(--text-color);
+  margin: 10px 25px;
 }
+
+
 
 :root {
   --font-family: 'Monserrat', sans-serif;
@@ -44,3 +47,4 @@ body {
   margin: auto;
   position: fixed;
 }
+
