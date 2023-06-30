@@ -2,6 +2,7 @@ import { FaRegClock, FaHashtag } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { useState } from "react";
 import '../css/likedSongs.css'
+import { FaEllipsisH } from "react-icons/fa";
 
 
 export function LikedSongs() {
@@ -92,24 +93,26 @@ export function LikedSongs() {
                         <li className="header-item"><FaHashtag /></li>
                         <li className="header-item">Title</li>
                         <li className="header-item">Album</li>
-                        <li className="header-item"><FaRegClock /></li>    
+                        <li className="header-item"><FaRegClock /></li>   
+                        <li className="header-item no-show"><FaEllipsisH /></li>    
                     </ul>
                 </div>
                 <hr />
                 <ul className="container-main">
                     {likedSongs.map((likedSong) => (
                         <li className="likedSong-item" key={likedSong.id}>
-                            <p>{likedSong.index}</p>
+                            <p className="center-item">{likedSong.index}</p>
                             <div className="likedSong-title">
                                 <div className="likedSong-img">
                                 </div>
-                                <div className="likedSong-title-details">
+                                <div className="likedSong-title-details center-item">
                                     <p className="medium">{likedSong.title}</p>
                                     <p className="normal">{likedSong.artist}</p>
                                 </div>
                             </div>
-                            <p>{likedSong.album}</p>
+                            <p className="item-medium">{likedSong.album}</p>
                             <p>{likedSong.duration}</p>
+                            <p className="center-item"><FaEllipsisH /></p>
                       </li>
                     ))}
                 </ul>

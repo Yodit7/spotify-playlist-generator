@@ -2,7 +2,7 @@
 import "../css/generator.css";
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import { FaRegClock, FaHashtag } from "react-icons/fa";
+import { FaRegClock, FaHashtag, FaEllipsisH } from "react-icons/fa";
 // import { RxMagicWand } from "react-icons/rx";
 import { RiAiGenerate } from "react-icons/ri";
 
@@ -107,7 +107,7 @@ export function Generator({spotifyToken}){
               <label>How many songs should be in your playlist?</label>
               <input type="text" placeholder="number" value={num} onChange={getNumOfSongs}/>
             </div>
-            <div className="container-item">
+            <div className="container-item container-item-medium">
               <button className="btn-main btn-main-icon" onClick={searchTracksByGenre}>Generate <RiAiGenerate /></button>
                 {songs.map((song) => (
                   <div key={song.id}>
@@ -132,10 +132,16 @@ export function Generator({spotifyToken}){
                 <p>Album</p>
                 <FaRegClock />
             </div>
+
+            <div className="container-display-header-medium">
+                <FaHashtag />
+                <p>Title</p>
+                <FaEllipsisH />
+            </div>
             <hr />
             <ul className="container-display-list">
               <li className="container-display-item">
-                <p>1</p>
+                <p className="center-item">1</p>
                 <div className="track-details">
                   <div className="track-cover"></div>
                   <div className="track-title-details">
@@ -145,9 +151,10 @@ export function Generator({spotifyToken}){
                 </div>
                 <p>Album Name</p>
                 <p>3:12</p>
+                <p className="center-item"><FaEllipsisH /></p>
               </li>
               <li className="container-display-item">
-                <p>1</p>
+                <p className="center-item">1</p>
                 <div className="track-details">
                   <div className="track-cover"></div>
                   <div className="track-title-details">
@@ -157,9 +164,10 @@ export function Generator({spotifyToken}){
                 </div>
                 <p>Album Name</p>
                 <p>3:12</p>
+                <p className="center-item"><FaEllipsisH /></p>
               </li>
               <li className="container-display-item">
-                <p>1</p>
+                <p className="center-item">1</p>
                 <div className="track-details">
                   <div className="track-cover"></div>
                   <div className="track-title-details">
@@ -169,9 +177,10 @@ export function Generator({spotifyToken}){
                 </div>
                 <p>Album Name</p>
                 <p>3:12</p>
+                <p className="center-item"><FaEllipsisH /></p>
               </li>
               <li className="container-display-item">
-                <p>1</p>
+                <p className="center-item">1</p>
                 <div className="track-details">
                   <div className="track-cover"></div>
                   <div className="track-title-details">
@@ -181,9 +190,10 @@ export function Generator({spotifyToken}){
                 </div>
                 <p>Album Name</p>
                 <p>3:12</p>
+                <p className="center-item"><FaEllipsisH /></p>
               </li>
               <li className="container-display-item">
-                <p>1</p>
+                <p className="center-item">1</p>
                 <div className="track-details">
                   <div className="track-cover"></div>
                   <div className="track-title-details">
@@ -193,6 +203,7 @@ export function Generator({spotifyToken}){
                 </div>
                 <p>Album Name</p>
                 <p>3:12</p>
+                <p className="center-item"><FaEllipsisH /></p>
               </li>
             </ul>
           </div>

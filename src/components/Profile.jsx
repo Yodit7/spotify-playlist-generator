@@ -144,7 +144,7 @@ export function Profile({ spotifyToken }) {
 
   return (
     <>
-      {/* <div className="profile-header">
+      <div className="profile-header">
         <div className="profile-picture"></div>
         <h3>Yodit Ahmed</h3>
       </div>
@@ -152,13 +152,13 @@ export function Profile({ spotifyToken }) {
         <div className="profile-stats">
             <p>Follower: <span>21</span></p>
             <p>Following: <span>51</span></p>
-            <p className="center-line">Liked Songs: <span>1500</span></p>
+            {/* <p className="center-line">Liked Songs: <span>1500</span></p> */}
         </div>
         <div className="profile-links">
             <a href="">Liked Songs</a>
             <a href="">Playlists</a>
         </div>
-      </div> */}
+      </div>
       <div className="profile-overview">
         <div className="top-tracks">
           <div className="top-header">
@@ -209,7 +209,7 @@ export function Profile({ spotifyToken }) {
                     src={topArtist.images[0].url}
                     style={{ height: "60px", width: "60px" }}
                 />                 */}
-                <p className="medium">{topArtist.name}</p>
+                <p className="medium list-item-name">{topArtist.name}</p>
               </li>
             ))}
           </ul>

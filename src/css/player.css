@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     background-color: var(--black-grey-color);
-    width: 300px;
+    width: 20vw;
     height: 100vh;
     border: 1px solid var(--dark-grey-color);
     display: grid;
@@ -20,44 +20,6 @@
 .player-header {
     grid-row-start: 2;
 }
-
-/** Profile Details **/
-.profile-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    gap: 25px;
-}
-
-.profile-header .profile-picture {
-    height: 200px;
-    width: 200px;
-    background-color: black;
-    border-radius: 100px;
-}
-
-.profile-links {
-    display: flex;
-    gap: 30px;
-    margin-top: 10px;
-}
-
-.profile-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
-    padding: 8px 12px;
-    border-radius: 5px;
-    background-color: var(--dark-grey-color);
-}
-
-.profile-links a:hover {
-    color: var(--green-color);
-    font-weight: 600;
-    border-color: var(--green-color);
-}   
 
 /** Player Display **/
 .player-display {

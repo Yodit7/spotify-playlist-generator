@@ -1,22 +1,77 @@
 @import 'styles.css';
 
 .profile-section {
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
     margin: auto;
     display: grid;
     grid-template-columns: 250px 475px 475px;
     column-gap: 25px;
 }
 
+/** Profile Details **/
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 25px;
+}
+
+.profile-header .profile-picture {
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    border-radius: 100px;
+}
+
+.profile-header-infos {
+    margin-bottom: 60px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 25px;
+
+}
+
+.profile-links {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.profile-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--dark-grey-color);
+}
+
+.profile-links a:hover {
+    color: var(--green-color);
+    font-weight: 600;
+    border-color: var(--green-color);
+}   
+
 
 /** Profile Top's **/
 .profile-overview {
-    width: 1200px;
+    max-width: 1200px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 50px;
+    column-gap: 30px;
     margin-bottom: 75px;
 }
 
@@ -61,7 +116,9 @@
     align-items: center;
     padding: 5px;
     margin: 15px 30px;
+    /* gap: 2vw; */
 }
+
 
 .top-track-names {
     display: flex;
@@ -96,4 +153,52 @@
     display: flex;
     justify-content: center;
     margin: 30px 0px;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .list-item-name {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px){
+    .profile-overview {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 50px;
+        margin: 10px auto;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .list-item-name {
+        justify-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-overview {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 50px;
+        margin: 10px auto;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .list-item-name {
+        margin-left: 5px;
+    }
+
+    .top-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-artist .list-item,
+    .top-tracks .list-item {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 70px;
+    }
 }
