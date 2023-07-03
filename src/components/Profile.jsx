@@ -16,6 +16,7 @@ export function Profile({ spotifyToken }) {
     getTopTracks()
     getTopArtists()
     getProfilePicture()
+    getFollowing()
   }, []);
 
   /**
@@ -28,6 +29,19 @@ export function Profile({ spotifyToken }) {
       }
     });
     setMe(response.data)
+  }
+
+  /**
+   * Get Following
+   */
+  const getFollowing = async () => {
+    const response = await axios.get("https://api.spotify.com/v1/me/following?type=artist", {
+      headers: {
+        Authorization: `Bearer ${spotifyToken}`
+      }
+    });
+    const followingCount = response.data.total;
+    console.log(followingCount);
   }
 
   /**
@@ -75,7 +89,7 @@ export function Profile({ spotifyToken }) {
         <div className="profile-header-infos">
           <div className="profile-stats">
               <p>Followers: <span>{me.followers.total}</span></p>
-              <p>Following: <span>51</span></p>
+              <p>Following: <span>51</span></p> 
           </div>
           <div className="profile-links">
               <a href="#likedSongs">Liked Songs</a>
