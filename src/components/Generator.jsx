@@ -51,9 +51,6 @@ export function Generator({ spotifyToken }) {
           timestamp: timestamp,
         },
       });
-
-      // const newSongs = response.data.tracks.items;
-      // const randomTracks = response.data.tracks.items;
       setSongs(response.data.tracks.items);
       setGenerated(true);
     } catch (error) {
@@ -72,6 +69,49 @@ export function Generator({ spotifyToken }) {
 
     return seed;
   };
+
+  const savePlaylist = async () => {
+    try {
+      const timestamp = new Date().getTime();
+      const playlistName = `Generated Playlist - ${timestamp}`;
+  
+      // Step 1: Create a new playlist
+      const createPlaylistResponse = await axios.post(
+        `https://api.spotify.com/v1/me/playlists`,
+        {
+          name: playlistName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${spotifyToken}`,
+          },
+        }
+      );
+  
+      const playlistId = createPlaylistResponse.data.id;
+  
+      // Step 2: Add songs to the playlist
+      const trackUris = songs.map((song) => song.uri);
+      await axios.post(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        {
+          uris: trackUris,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${spotifyToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      // Step 3: Display success message
+      console.log("Playlist saved successfully!");
+    } catch (error) {
+      console.log("Error saving playlist:", error);
+    }
+  };
+  
 
   return (
     <>
@@ -157,7 +197,7 @@ export function Generator({ spotifyToken }) {
 
         {generated ? (
           <div className="playlist-add">
-            <button className="btn-main">Save Playlist</button>
+            <button className="btn-main" onClick={savePlaylist}>Save Playlist</button>
           </div>
         ) : (
           <div></div>
