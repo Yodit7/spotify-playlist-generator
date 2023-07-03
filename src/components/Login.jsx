@@ -28,10 +28,6 @@ export function Login() {
         if(spotifyToken){
             setSpotifyToken(spotifyToken)
             spotifyApi.setAccessToken(spotifyToken)
-            // spotifyApi.getMe().then((user) => {
-            //     // console.log(user)
-            //     setUser(user)
-            // })
             setLoggedIn(true)
         }
     })

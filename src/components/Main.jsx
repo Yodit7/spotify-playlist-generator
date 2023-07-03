@@ -14,8 +14,8 @@ export function Main({spotifyToken}) {
       <>
         <Profile spotifyToken={spotifyToken}/>
         <Generator spotifyToken={spotifyToken} />    
-        <LikedSongs />
-        <Playlist />
+        <LikedSongs spotifyToken={spotifyToken}/>
+        <Playlist spotifyToken={spotifyToken}/>
       </>
     );
 }

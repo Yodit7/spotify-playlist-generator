@@ -17,7 +17,7 @@
     justify-content: space-around;
     align-items: center;
     gap: 50px;
-    margin-top: 100px;
+    margin-top: 150px;
     z-index: 99;
     border: 1px solid var(--bright-grey-color);
     background-color: var(--dark-grey-color);
@@ -107,6 +107,7 @@ select {
     gap: 5px;
 }
 
+
 .track-artist {
     font-weight: var(--thin-font-weight);
 }
@@ -128,6 +129,7 @@ select {
         grid-template-columns: 40% 60%;
         gap: 5px;
         margin-left: 10px;
+        margin-top: 150px;
     }
 
     .container-item {

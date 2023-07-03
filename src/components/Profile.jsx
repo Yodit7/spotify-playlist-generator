@@ -5,160 +5,84 @@ import SpotifyWebApi from "spotify-web-api-js";
 import axios from "axios";
 
 export function Profile({ spotifyToken }) {
-  const [topTracks, setTopTracks] = useState([
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Des Yemil Sikay",
-      artist: "Teddy Afro",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-    {
-      cover: "Track Cover",
-      title: "Tom Ford",
-      artist: "Lyno Nine8",
-      duration: "3:12 min",
-    },
-  ]);
-  const [topArtists, setTopArtists] = useState([
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-    {
-        cover: "Cover",
-        name: "Teddy Afro"
-    },
-  ]);
-
+  
+  const [topTracks,setTopTracks] = useState([]);
+  const [topArtists, setTopArtists] = useState([])
+  const [me, setMe] = useState([])
   const spotifyApi = new SpotifyWebApi();
 
-  useEffect(() => {
 
+  useEffect(() => {
+    getTopTracks()
+    getTopArtists()
+    getProfilePicture()
   }, []);
 
   /**
-   * Get User's Top Tracks
+   * Get Profile Picture
    */
-  const getTopTracksWithRetry = async () => {
-    try {
-      await getTopTracks();
-    } catch (error) {
-      if (error.response && error.response.status === 429) {
-        const resetTime = error.response.headers["retry-after"] || 0;
-        await delay(resetTime * 1000);
-        await getTopTracksWithRetry();
-      } else {
-        console.error(error);
+  const getProfilePicture = async () => {
+    const response = await axios.get("https://api.spotify.com/v1/me", {
+      headers: {
+        Authorization: `Bearer ${spotifyToken}`
       }
-    }
-  };
+    });
+    setMe(response.data)
+  }
 
+  /**
+   * Get Top Tracks
+   */
   const getTopTracks = async () => {
-    const response = await spotifyApi.getMyTopTracks({ limit: 10 });
-    setTopTracks(response.items);
-  };
+    const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+        headers: {
+          Authorization: `Bearer ${spotifyToken}`
+        }, 
+        params: {
+          limit: '10'
+        }
+      });
+      setTopTracks(response.data.items)
+  }
 
-  const delay = (ms) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  };
+  /** 
+   * Get Top Artists
+   */
+  const getTopArtists = async () => {
+    const response = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+        headers: {
+          Authorization: `Bearer ${spotifyToken}`
+        }, 
+        params: {
+          limit: '10'
+        }
+      });
+      setTopArtists(response.data.items)
+  }
+
 
   return (
     <>
-      <div className="profile-header">
-        <div className="profile-picture"></div>
-        <h3>Yodit Ahmed</h3>
-      </div>
-      <div className="profile-header-infos">
-        <div className="profile-stats">
-            <p>Follower: <span>21</span></p>
-            <p>Following: <span>51</span></p>
-            {/* <p className="center-line">Liked Songs: <span>1500</span></p> */}
+      {me.images && me.images.length > 0 && (
+        <div className="profile-header">
+          <div className="profile-picture">
+            <img src={me.images[0].url} className="profile-picture"/>
+          </div>
+          <h3>{me.display_name}</h3>
         </div>
-        <div className="profile-links">
-            <a href="">Liked Songs</a>
-            <a href="">Playlists</a>
+      )}
+      {me.followers && (
+        <div className="profile-header-infos">
+          <div className="profile-stats">
+              <p>Followers: <span>{me.followers.total}</span></p>
+              <p>Following: <span>51</span></p>
+          </div>
+          <div className="profile-links">
+              <a href="#likedSongs">Liked Songs</a>
+              <a href="#playlists">Playlists</a>
+          </div>
         </div>
-      </div>
+      )}
       <div className="profile-overview">
         <div className="top-tracks">
           <div className="top-header">
@@ -169,26 +93,26 @@ export function Profile({ spotifyToken }) {
             {topTracks.map((topTrack) => (
               <li className="list-item" key={topTrack.id}>
                 {/* <div className="list-item-left"> */}
-                  {/* <img
+                  <img
                     src={topTrack.album.images[0].url}
                     style={{ height: "50px", width: "50px" }}
-                  /> */}
-                  <div className="top-track-img">
-                    {/* {topTrack.cover} */}
-                  </div>
+                  />
+                  {/* <div className="top-track-img">
+                    {topTrack.cover}
+                  </div> */}
                   <div className="top-track-names">
                     <p className="medium">
-                      {topTrack.title}
-                      {/* {topTrack.name} */}
+                      {/* {topTrack.title} */}
+                      {topTrack.name}
                     </p>
                     <p className="normal">
-                      {topTrack.artist}
-                      {/* {topTrack.artists[0].name} */}
+                      {/* {topTrack.artist} */}
+                      {topTrack.artists[0].name}
                     </p>
                     <p className="small">
-                      {topTrack.duration}
-                      {/* {Math.floor(topTrack.duration_ms / 1000 / 60)}:
-                      {((topTrack.duration_ms / 1000) % 60).toFixed(0)} min */}
+                      {/* {topTrack.duration} */}
+                      {Math.floor(topTrack.duration_ms / 1000 / 60)}:
+                      {((topTrack.duration_ms / 1000) % 60).toFixed(0)} min
                     </p>
                   </div>
                 {/* </div> */}
@@ -204,11 +128,11 @@ export function Profile({ spotifyToken }) {
           <ul className="top-list" key="2">
             {topArtists.map((topArtist) => (
               <li className="list-item" key={topArtist.id}>
-                <div className="top-artist-img"></div>
-                {/* <img
+                {/* <div className="top-artist-img"></div> */}
+                <img
                     src={topArtist.images[0].url}
                     style={{ height: "60px", width: "60px" }}
-                />                 */}
+                />                
                 <p className="medium list-item-name">{topArtist.name}</p>
               </li>
             ))}
@@ -217,8 +141,8 @@ export function Profile({ spotifyToken }) {
       </div>
       <div className="generate-button">
         <button className="btn-main btn-main-icon">
-          Generate Playlist
-          <FaChevronDown />
+          <a href="#generate" className="generate-link">Generate Playlist
+          <FaChevronDown /></a>
         </button>
       </div>
     </>

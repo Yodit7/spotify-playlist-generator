@@ -27,12 +27,28 @@
 
 .playlist-item {
     list-style: none;
+    cursor: pointer;
+}
+
+.playlist-item p:hover {
+    color: var(--green-color);
+    font-weight: var(--medium-font-weight);
+}
+
+.playlist-item p {
+    width: 175px;
 }
 
 .playlist-cover {
+    display: flex;
     height: 200px;
     width: 200px;
     background-color: black;
     margin-bottom: 15px;
 }
 
+.playlist-cover p {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
